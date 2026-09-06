@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>та үүнийг хийхэд итгэлтэй байна уу 🌙</title>
+  <title>Нэг асуулт байна... 🌙</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -297,7 +297,7 @@
 <!-- ── HERO: Болзооно уу? ── -->
 <div class="hero">
   <p class="hero-tag">Чамд нэг зүйл хэлмээр байна</p>
-  <h1 class="hero-title">Would you like<br/><em>to watch a movie with me?</em></h1>
+  <h1 class="hero-title">Надтай<br/><em>болзооно уу?</em></h1>
   <p class="hero-sub">Нэг л товч дарвал хангалттай.</p>
 
   <div class="hero-btns">
@@ -600,6 +600,13 @@
       </div>
       ${placeHTML}
     `;
+
+    // Telegram notification
+    const places = picked.map(c => c.querySelector('.place-mn').textContent).join(', ');
+    const dateStr = calYear + ' оны ' + MONTHS[selectedDate.m] + ' ' + selectedDate.d;
+    const msg = '🌙 Болзооны хүсэлт ирлээ!%0A%0A📅 ' + dateStr + '%0A📍 ' + encodeURIComponent(places) + '%0A%0A💙 Тийм гэж хариуллаа!';
+    fetch('https://api.telegram.org/bot8368620732:AAE2I7seg7N0pQY1IhJEluDyrEpKOLE2dyc/sendMessage?chat_id=7900264690&text=' + msg)
+      .catch(() => {});
   }
 </script>
 
