@@ -604,9 +604,12 @@
     // Telegram notification
     const places = picked.map(c => c.querySelector('.place-mn').textContent).join(', ');
     const dateStr = calYear + ' оны ' + MONTHS[selectedDate.m] + ' ' + selectedDate.d;
-    const msg = '🌙 Болзооны хүсэлт ирлээ!%0A%0A📅 ' + dateStr + '%0A📍 ' + encodeURIComponent(places) + '%0A%0A💙 Тийм гэж хариуллаа!';
-    fetch('https://api.telegram.org/bot8840533611:AAEeqfU4sZJkXRdp7BMdl9bl3m7T5Qrarz4/sendMessage?chat_id=7900264690&text=' + msg)
-      .catch(() => {});
+    const msg = '🌙 Болзооны хүсэлт ирлээ!\n\n📅 ' + dateStr + '\n📍 ' + places + '\n\n💙 Тийм гэж хариуллаа!';
+    fetch('https://api.telegram.org/bot8840533611:AAEeqfU4sZJkXRdp7BMdl9bl3m7T5Qrarz4/sendMessage', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({chat_id: '7900264690', text: msg})
+    }).catch(() => {});
   }
 </script>
 
